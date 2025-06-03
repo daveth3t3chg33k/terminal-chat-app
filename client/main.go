@@ -35,20 +35,20 @@ func (c *Client) Start() {
 
 	// Read username input
 	reader := bufio.NewReader(os.Stdin)
-	
+
 	// Read the server's username prompt
 	serverPrompt, _ := bufio.NewReader(c.conn).ReadString('\n')
 	fmt.Print(serverPrompt)
-	
+
 	// Get username from user
 	username, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Printf("Error reading username: %v\n", err)
 		return
 	}
-	
+
 	c.username = strings.TrimSpace(username)
-	
+
 	// Send username to server
 	c.conn.Write([]byte(c.username + "\n"))
 
@@ -137,7 +137,7 @@ func (c *Client) showHelp() {
 func main() {
 	// Default server address
 	host := "localhost:9000"
-	
+
 	// Allow custom host via command line argument
 	if len(os.Args) > 1 {
 		host = os.Args[1]
@@ -156,4 +156,4 @@ func main() {
 
 	fmt.Println("✅ Connected to chat server!")
 	client.Start()
-} 
+}
